@@ -1,0 +1,21 @@
+pipelineAccount:
+  awsAccountId: 123456789101
+  awsRegion: us-east-1
+
+devAccount:
+  awsAccountId: 123456789102
+  awsRegion: us-east-1
+
+prodAccount:
+  awsAccountId: 123456789103
+  awsRegion: us-east-1
+
+dev:
+  jobs:
+    ProcessLegislators:
+      inputLocation: s3://awsglue-datasets/examples/us-legislators/all/persons.json
+
+prod:
+  jobs:
+    ProcessLegislators:
+      inputLocation: s3://awsglue-datasets/examples/us-legislators/all/persons.json
