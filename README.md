@@ -232,7 +232,7 @@ Now let’s make the required changes for a new AWS Glue job here.
 
 Let’s add this new code block right after the existing job definition of `ProcessLegislators` in order to add the new Glue job `JoinLegislators`:
 
-```
+```python
         self.new_glue_job = glue.Job(self, "JoinLegislators",
             executable=glue.JobExecutable.python_etl(
                 glue_version=glue.GlueVersion.V4_0,
@@ -262,7 +262,7 @@ Then, create a new job script, and a new unit test script for the new Glue job:
 
 * `aws_glue_cdk_baseline/job_scripts/join_legislators.py`
 
-```
+```python
 import sys
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
@@ -327,7 +327,7 @@ if __name__ == '__main__':
 
 * `aws_glue_cdk_baseline/job_scripts/tests/test_join_legislators.py`
 
-```
+```python
 import pytest
 import sys
 import join_legislators
@@ -362,7 +362,7 @@ def test_counts(glue_context):
 
 Add following under `prod` and `dev`:
 
-```
+```yaml
     JoinLegislators:
       inputLocationOrgs: "s3://awsglue-datasets/examples/us-legislators/all/organizations.json"
       inputLocationPersons: "s3://awsglue-datasets/examples/us-legislators/all/persons.json"
@@ -375,7 +375,7 @@ Add following under `prod` and `dev`:
 
 Add following under `"jobs"` in the variable `config` in the above three files (No need to replace S3 locations): 
 
-```
+```python
             ,
             "JoinLegislators": {
                 "inputLocationOrgs": "s3://path_to_data_orgs",
